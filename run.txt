@@ -1,0 +1,10 @@
+Run Karma:
+./node_modules/karma/bin/karma start
+
+Uruchamianie
+w katalogu C:\Projects\memoryGame>
+w konsoli wpisac http-server
+
+
+zeby dzialalo
+npm install -g http-server

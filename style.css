@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box
+}
+body {
+    font-family: Calibri, serif;
+    background: darkseagreen
+}
+
+header {
+    text-align: center;
+    color: darkgreen;
+    font-size: x-large;
+}
+nav {
+    float: left;
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+}
+
+.gameboard {
+    float: left;
+    padding: 20px;
+    width: 70%;
+}
+
+button {
+    background-color: darkgreen;
+    color: #eff3bc;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 2px;
+}
+h2 {
+    font-size: x-large;
+    color: darkgreen;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+    margin: 10px;
+    padding: 10px;
+    display:inline-block;
+}
+
+.square.standard {
+    background-color: #eff3bc;
+}
+
+.square.blue {
+    background-color: #0800f3;
+}
+
+.square.green {
+    background-color: #7bf318;
+}
+
+.square.red {
+    background-color: #f3243c;
+}
