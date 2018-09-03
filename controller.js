@@ -22,6 +22,7 @@ document.addEventListener('click', function(e) {
 var controller = function () {
 
     var startGame = function () {
+        // game.resetLevel();
         var pieces = game.generateBoard(),
             gameboard = document.getElementsByClassName("gameboard")[0];
 

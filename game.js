@@ -105,6 +105,10 @@ var game = (function () {
         return piecesIDs;
     },
 
+    resetLevel = function () {
+        currentLevel = 0;
+    },
+
     removePieceFromList = function (elementToRemoveID) {
         var elementToRemove = document.getElementById(elementToRemoveID);
         var indexToRemove = highlightedPieces.indexOf(elementToRemove);
@@ -114,6 +118,7 @@ var game = (function () {
             controller.highlightPieceInGreen(lastClickedElementID);
             setTimeout(function(){
                 startGame();
+                highlightPiecesInBlue();
             }, 3000);
         }
     };
@@ -132,7 +137,9 @@ var game = (function () {
         'guessWasRight' : guessWasRight,
         'removePieceFromList' : removePieceFromList,
         'reduceNumberOfPiecesToGuess': reduceNumberOfPiecesToGuess,
-        'getPiecesToGuess': getPiecesToGuess
+        'getPiecesToGuess': getPiecesToGuess,
+        'resetLevel': resetLevel,
+        'getPiecesIDs': getPiecesIDs,
     };
 
 }());
