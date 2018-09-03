@@ -98,8 +98,8 @@ var game = (function () {
         //czy elementToRemove to id
         var elementToRemove = document.getElementById(elementToRemoveID);
         highlightedPieces = highlightedPieces.splice(elementToRemove);
-        if (getHighlightedPieces().length === 0) {
-            setCurrentLevel(getCurrentLevel() + 2);
+        if (getHighlightedPieces().length === 1) {
+            setCurrentLevel(getCurrentLevel() + 1);
             controller.highlightPieceInGreen(lastClickedElementID);
             // view.highlightPieceInGreen(lastClickedElementID);
             setTimeout(function(){

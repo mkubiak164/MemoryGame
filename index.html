@@ -5,10 +5,24 @@
     <script src="./game.js"></script>
     <script src="./view.js"></script>
     <script src="./controller.js"></script>
+    <script>
+        function myFunction() {
+            var piecesToGuess = game.getPiecesToHighlight().length;
+            document.getElementById("myText").innerHTML = piecesToGuess.toString();
+            var currentLevel = game.getCurrentLevel();
+            document.getElementById("level").innerHTML = currentLevel.toString();
+        }
+    </script>
+
 </head>
-<body>
+<body onload="myFunction()">
     <header>
         <h1><i>Memory game</i></h1>
+        <h2></h2>
+        <h2 style="color: forestgreen" ><i>
+            Current level: <span id="level">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;&nbsp;Pieces to guess: <span id="myText"></span></i>
+        </h2>
     </header>
 
     <section>
@@ -17,8 +31,22 @@
             <h2>   </h2>
             <button type="button" onclick="view.highlightPiecesInBlue()">Highlight</button>
             <h2>   </h2>
-            Highlight time (1-10): <input type="range" name="Hilight time" min="1" max="10"
-                           oninput="view.setHighlightTime(this.value)" onchange="view.setHighlightTime(this.value)">
+            <h4>Highlight time (1-10): </h4>
+            <input type="range" name="Hilight time" min="1" max="10" list="tickmarks"
+                           oninput="view.setHighlightTime(this.value)"
+                            onchange="view.setHighlightTime(this.value)" >
+            <datalist id="tickmarks" style="color: darkgreen">
+                <option value="1" label="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5" label="5">
+                <option value="6">
+                <option value="7">
+                <option value="8">
+                <option value="9">
+                <option value="10" label="10">
+            </datalist>
             <h2>   </h2>
             <button type="button" onclick="game.getMorePieces()">Add more pieces</button>
 
@@ -26,6 +54,7 @@
 
 
         <div class="gameboard">
+
         </div>
 
 

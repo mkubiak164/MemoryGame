@@ -52,7 +52,7 @@ var view = (function () {
 
         setTimeout(function () {
             highlightPiecesInBlue();
-        }, 3000);
+        }, 2000);
 
     },
 
@@ -61,8 +61,10 @@ var view = (function () {
             piece.className = "square green";
             setTimeout(function () {
                 piece.className = "square standard";
-        }, 3000);
+        }, 2000);
     };
+
+
 
 
 

@@ -1,20 +1,17 @@
 describe('Game', function () {
-   it('should have 5 pieces after game start', function () {
+   it('should have 4 pieces after game start', function () {
       var pieces;
       //zwracam 4
       game.startGame();
-
-      pieces = game.getPieces();
-
-      expect(pieces.length).toBe(5);
+      pieces = game.getAllCurrentPieces();
+      expect(pieces.length).toBe(4);
    });
 
-    it('one pieces should be to guess after game start', function () {
+    it('one pieces should be to guess after 1st highlight', function () {
         var piecesToGuess;
         game.startGame();
-
-        piecesToGuess = findPiecesToGuess(game.getPieces());
-
+        view.highlightPiecesInBlue();
+        piecesToGuess = findPiecesToGuess(game.getPiecesToHighlight());
         expect(piecesToGuess.length).toBe(1);
     });
 
