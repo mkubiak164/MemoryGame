@@ -5,7 +5,6 @@ document.addEventListener('click', function(e) {
     var target = e.target || e.srcElement;
         lastClickedElementID = target.id !== "" && target.id.includes("square")? target.id : -1;
     var squareWasClicked = lastClickedElementID !== -1;
-    var piecesToGuess = game.getHighlightedPieces();
 
     if (squareWasClicked) {
         if (guessWasRight(lastClickedElementID)) {
@@ -22,7 +21,6 @@ document.addEventListener('click', function(e) {
 var controller = function () {
 
     var startGame = function () {
-        // game.resetLevel();
         var pieces = game.generateBoard(),
             gameboard = document.getElementsByClassName("gameboard")[0];
 
@@ -67,7 +65,6 @@ var controller = function () {
     guessWasRight = function () {
         return game.guessWasRight(lastClickedElementID);
     };
-
 
     return {
         'startGame': startGame,

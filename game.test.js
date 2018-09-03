@@ -33,9 +33,8 @@ describe('game', function () {
     it('should get pieces ids', function () {
         var pieces = [
             {id: 1}, {id: 2}, {id: 3}
-        ];
-
-        var pieceIds = game.getPiecesIDs(pieces);
+        ],
+        pieceIds = game.getPiecesIDs(pieces);
 
         expect(pieceIds.length).toBe(3);
         expect(pieceIds.pop()).toBe(3);

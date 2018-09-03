@@ -1,19 +1,19 @@
-
-
 var game = (function () {
 
     const initialNumberOfPieces = 4;
-    var currentLevel = 0;
-    var allCurrentPieces = [];
-    var highlightTime = 3000;
-    var highlightedPieces = [];
-    var piecesToGuess = 0;
+    var currentLevel = 0,
+        allCurrentPieces = [],
+        highlightTime = 3000,
+        highlightedPieces = [],
+        piecesToGuess = 0;
 
     generateBoard = function () {
         allCurrentPieces = [];
-        var gameboard = document.getElementsByClassName("gameboard")[0];
+        var gameboard = document.getElementsByClassName("gameboard")[0],
+            numberOfPieces;
+
         gameboard.innerHTML = '';
-        var numberOfPieces = getNumberOfPiecesOnCurrentLevel();
+        numberOfPieces = getNumberOfPiecesOnCurrentLevel();
 
         for (var i = 0; i < numberOfPieces; i++) {
             var piece = document.createElement("div");
@@ -90,11 +90,7 @@ var game = (function () {
 
     guessWasRight = function (lastClickedElementID) {
         var highlightedPiecesIDs = getPiecesIDs(highlightedPieces);
-        if (highlightedPiecesIDs.includes(lastClickedElementID)) {
-            return true;
-        } else {
-            return false;
-        }
+        return highlightedPiecesIDs.includes(lastClickedElementID);
     },
 
     getPiecesIDs = function (highlightedPieces) {
@@ -110,8 +106,9 @@ var game = (function () {
     },
 
     removePieceFromList = function (elementToRemoveID) {
-        var elementToRemove = document.getElementById(elementToRemoveID);
-        var indexToRemove = highlightedPieces.indexOf(elementToRemove);
+        var elementToRemove = document.getElementById(elementToRemoveID),
+            indexToRemove = highlightedPieces.indexOf(elementToRemove);
+
         highlightedPieces.splice(indexToRemove, 1);
         if (getHighlightedPieces().length === 0) {
             setCurrentLevel(getCurrentLevel() + 1);

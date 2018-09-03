@@ -42,7 +42,6 @@ var view = (function () {
     },
 
     highlightPieceInRed = function (lastClickedElementID) {
-
         var piece = getPieceByID(lastClickedElementID);
         piece.className = "square red";
 
@@ -53,9 +52,11 @@ var view = (function () {
     },
 
     updateGameState = function () {
-        var piecesToGuess = controller.getPiecesToGuess();
+        var piecesToGuess = controller.getPiecesToGuess(),
+            currentLevel;
         document.getElementById("piecesToGuess").innerHTML = piecesToGuess.toString();
-        var currentLevel = game.getCurrentLevel();
+
+        currentLevel = game.getCurrentLevel();
         document.getElementById("level").innerHTML = (currentLevel + 1).toString();
     },
 
