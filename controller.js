@@ -9,26 +9,12 @@ document.addEventListener('click', function(e) {
 
     if (squareWasClicked) {
         if (guessWasRight(lastClickedElementID)) {
-            // if(piecesToGuess.length > 1) { //ten if dac do removePieceFromList
             view.highlightPieceInGreen(lastClickedElementID);
             game.removePieceFromList(lastClickedElementID);
-            // } else {
-            //     var currentLevel = game.getCurrentLevel();
-            //     var newCurrentLevel = currentLevel + 1;
-            //     game.setCurrentLevel(newCurrentLevel);
-            //     view.highlightPieceInGreen(lastClickedElementID);
-            //     setTimeout(function(){
-            //         startGame();
-            //     }, 3000);
-            // }
-
         } else {
             view.highlightPieceInRed(lastClickedElementID);
-
         }
     }
-    // odpytać game ile zostało jeszcz kawłkkó
-
 }, false);
 
 var controller = function () {
@@ -72,9 +58,8 @@ var controller = function () {
     },
 
     guessWasRight = function () {
-        // var lastClickedElementID = getClickedElementID();
         return game.guessWasRight(lastClickedElementID);
-    }
+    };
 
 
     return {
@@ -89,3 +74,5 @@ var controller = function () {
         'highlightPieceInGreen': highlightPieceInGreen
     }
 }();
+
+

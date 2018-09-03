@@ -1,4 +1,6 @@
-describe('Game', function () {
+
+describe('game', function () {
+
    it('should have 4 pieces after game start', function () {
       var pieces;
       //zwracam 4
@@ -21,11 +23,24 @@ describe('Game', function () {
                numberOfPieces: 6
             };
         game.startGame(config);
-
         pieces = game.getPieces();
-
         expect(pieces.length).toBe(6);
     });
+
+    it('should be clicked 2 pieces to pass level 1', function () {
+        config = {
+            currentLevel: 1
+        };
+        game.startGame(config);
+        expect()
+    });
+
+    it('should highlight in green if was higlighted blue', function () {
+
+        var pieceToGuess;
+        expect(pieceToGuess).toHaveClass("square green");
+    });
+
 
 
     function findPiecesToGuess(pieces) {

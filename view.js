@@ -1,26 +1,20 @@
 var view = (function () {
 
-    // const initialNumberOfPieces = 4;
     var allPiecesOnBoard;
 
     startGame = function () {
         controller.startGame();
     },
 
-    getInitialNumberOfPieces = function () {
-        //donm
-    },
-
     getHighlightTime = function () {
         return controller.getHighlightTime();
-    };
+    },
 
     setHighlightTime = function (newHighlightTime) {
         controller.setHighlightTime(newHighlightTime * 1000);
-    };
+    },
 
     highlightPiecesInBlue = function() {
-        //start game at current level
         startGame();
         allPiecesOnBoard = controller.getAllCurrentPieces();
         var piecesToHighlight = controller.getPiecesToHighlight();
@@ -64,19 +58,13 @@ var view = (function () {
         }, 2000);
     };
 
-
-
-
-
     return {
         'startGame': startGame,
-        'getInitialNumberOfPieces': getInitialNumberOfPieces,
         'highlightPiecesInBlue': highlightPiecesInBlue,
         'setHighlightTime': setHighlightTime,
         'getHighlightTime': getHighlightTime,
         'highlightPieceInRed' : highlightPieceInRed,
         'highlightPieceInGreen' : highlightPieceInGreen
     };
-
 }());
 

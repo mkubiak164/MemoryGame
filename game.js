@@ -1,3 +1,5 @@
+
+
 var game = (function () {
 
     const initialNumberOfPieces = 4;
@@ -5,7 +7,6 @@ var game = (function () {
     var allCurrentPieces = [];
     var highlightTime = 3000;
     var highlightedPieces = [];
-
 
     generateBoard = function () {
         allCurrentPieces = [];
@@ -63,7 +64,7 @@ var game = (function () {
 
     getHighlightTime = function () {
         return highlightTime;
-    }
+    },
 
     getCurrentLevel = function () {
         return currentLevel;
@@ -95,19 +96,17 @@ var game = (function () {
     },
 
     removePieceFromList = function (elementToRemoveID) {
-        //czy elementToRemove to id
         var elementToRemove = document.getElementById(elementToRemoveID);
-        highlightedPieces = highlightedPieces.splice(elementToRemove);
-        if (getHighlightedPieces().length === 1) {
+        var indexToRemove = highlightedPieces.indexOf(elementToRemove);
+        highlightedPieces.splice(indexToRemove, 1);
+        if (getHighlightedPieces().length === 0) {
             setCurrentLevel(getCurrentLevel() + 1);
             controller.highlightPieceInGreen(lastClickedElementID);
-            // view.highlightPieceInGreen(lastClickedElementID);
             setTimeout(function(){
                 startGame();
             }, 3000);
         }
     };
-
 
     return {
         'generateBoard': generateBoard,
