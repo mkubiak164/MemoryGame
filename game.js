@@ -7,6 +7,7 @@ var game = (function () {
     var allCurrentPieces = [];
     var highlightTime = 3000;
     var highlightedPieces = [];
+    var piecesToGuess = 0;
 
     generateBoard = function () {
         allCurrentPieces = [];
@@ -37,7 +38,16 @@ var game = (function () {
         }
 
         highlightedPieces = piecesToHighlight;
+        piecesToGuess = piecesToHighlight.length;
         return piecesToHighlight;
+    },
+
+    getPiecesToGuess = function () {
+        return piecesToGuess;
+    },
+
+    reduceNumberOfPiecesToGuess = function () {
+        piecesToGuess--;
     },
 
     getNumberOfPiecesOnCurrentLevel = function () {
@@ -120,7 +130,9 @@ var game = (function () {
         'setCurrentLevel' : setCurrentLevel,
         'getHighlightedPieces' : getHighlightedPieces,
         'guessWasRight' : guessWasRight,
-        'removePieceFromList' : removePieceFromList
+        'removePieceFromList' : removePieceFromList,
+        'reduceNumberOfPiecesToGuess': reduceNumberOfPiecesToGuess,
+        'getPiecesToGuess': getPiecesToGuess
     };
 
 }());

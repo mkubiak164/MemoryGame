@@ -4,6 +4,7 @@ var view = (function () {
 
     startGame = function () {
         controller.startGame();
+        updateGameState();
     },
 
     getHighlightTime = function () {
@@ -25,6 +26,7 @@ var view = (function () {
             setPieceClass(piecesToHighlight, "square standard");
         }, getHighlightTime());
 
+        updateGameState();
         return allPiecesOnBoard;
     },
 
@@ -50,6 +52,13 @@ var view = (function () {
 
     },
 
+    updateGameState = function () {
+        var piecesToGuess = controller.getPiecesToGuess();
+        document.getElementById("piecesToGuess").innerHTML = piecesToGuess.toString();
+        var currentLevel = game.getCurrentLevel();
+        document.getElementById("level").innerHTML = (currentLevel + 1).toString();
+    },
+
     highlightPieceInGreen = function (lastClickedElementID) {
         var piece = getPieceByID(lastClickedElementID);
             piece.className = "square green";
@@ -64,7 +73,8 @@ var view = (function () {
         'setHighlightTime': setHighlightTime,
         'getHighlightTime': getHighlightTime,
         'highlightPieceInRed' : highlightPieceInRed,
-        'highlightPieceInGreen' : highlightPieceInGreen
+        'highlightPieceInGreen' : highlightPieceInGreen,
+        'updateGameState': updateGameState
     };
 }());
 

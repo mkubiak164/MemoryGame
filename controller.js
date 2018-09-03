@@ -14,6 +14,8 @@ document.addEventListener('click', function(e) {
         } else {
             view.highlightPieceInRed(lastClickedElementID);
         }
+        game.reduceNumberOfPiecesToGuess();
+        view.updateGameState();
     }
 }, false);
 
@@ -57,6 +59,10 @@ var controller = function () {
         return game.getPiecesToHighlight();
     },
 
+    getPiecesToGuess = function () {
+        return game.getPiecesToGuess();
+    },
+
     guessWasRight = function () {
         return game.guessWasRight(lastClickedElementID);
     };
@@ -71,7 +77,8 @@ var controller = function () {
         'getAllCurrentPieces' : getAllCurrentPieces,
         'getPiecesToHighlight' : getPiecesToHighlight,
         'guessWasRight': guessWasRight,
-        'highlightPieceInGreen': highlightPieceInGreen
+        'highlightPieceInGreen': highlightPieceInGreen,
+        'getPiecesToGuess': getPiecesToGuess
     }
 }();
 

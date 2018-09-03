@@ -5,23 +5,15 @@
     <script src="./game.js"></script>
     <script src="./view.js"></script>
     <script src="./controller.js"></script>
-    <script>
-        function myFunction() {
-            var piecesToGuess = game.getPiecesToHighlight().length;
-            document.getElementById("myText").innerHTML = piecesToGuess.toString();
-            var currentLevel = game.getCurrentLevel();
-            document.getElementById("level").innerHTML = currentLevel.toString();
-        }
-    </script>
 
 </head>
-<body onload="myFunction()">
+<body onload="view.startGame()">
     <header>
         <h1><i>Memory game</i></h1>
         <h2></h2>
         <h2 style="color: forestgreen" ><i>
             Current level: <span id="level">&nbsp;&nbsp;&nbsp;</span>
-            &nbsp;&nbsp;&nbsp;Pieces to guess: <span id="myText"></span></i>
+            &nbsp;&nbsp;&nbsp;Pieces to guess: <span id="piecesToGuess"></span></i>
         </h2>
     </header>
 
