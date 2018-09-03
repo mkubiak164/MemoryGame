@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "npm index.js",
-    "test": "karma start"
+    "test": "karma start karma.conf.js"
   },
   "author": "Marta Kubiak",
   "license": "ISC",
