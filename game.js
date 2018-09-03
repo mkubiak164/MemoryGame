@@ -3,119 +3,126 @@ var game = (function () {
     const initialNumberOfPieces = 4;
     var currentLevel = 0;
     var allCurrentPieces = [];
+    var highlightTime = 3000;
+    var highlightedPieces = [];
+
 
     generateBoard = function () {
-        var numberOfPieces = getNumberOfPiecesOnCurrentLevel(),
-            gameboard = document.getElementsByClassName("gameboard")[0];
+        allCurrentPieces = [];
+        var gameboard = document.getElementsByClassName("gameboard")[0];
+        gameboard.innerHTML = '';
+        var numberOfPieces = getNumberOfPiecesOnCurrentLevel();
 
-        for(var i=0; i<numberOfPieces; i++) {
+        for (var i = 0; i < numberOfPieces; i++) {
             var piece = document.createElement("div");
-            piece.className += "square.standard";
-            piece.id += i;
-            allCurrentPieces.push(piece.id);
-            gameboard.appendChild(piece);
+            piece.className += "square standard";
+            piece.id += 'square' + i;
+            allCurrentPieces.push(piece);
         }
-    };
+        return allCurrentPieces;
+    },
 
-    getPiecesToHighlight = function() {
-        var all = getNumberOfPiecesOnCurrentLevel();
-        var howMany = getNumberOfPiecesToHighlight();
+    getPiecesToHighlight = function () {
+        var howMany = getNumberOfPiecesToHighlight(),
+            piecesToHighlight = [];
 
-        var piecesToHighlight = new Array();
-
-        for(var i=0; i<howMany; i++) {
-            var los = Math.round(Math.random()*(allCurrentPieces.length-1));
-            jest = false;
-            for (var j=0;j<l.length;j++) {
-                if (piecesToHighlight[j] == los) jest = true;
-                if (jest) i--;
-                else piecesToHighlight[i] = los;
+        for (var i = 0; i < howMany; ) {
+            var drawedNumber = Math.round(Math.random() * (allCurrentPieces.length - 1));
+            if (piecesToHighlight.indexOf(allCurrentPieces[drawedNumber]) === -1) {
+                var pieceToHighlight = allCurrentPieces[drawedNumber];
+                piecesToHighlight.push(pieceToHighlight);
+                i++;
             }
         }
+
+        highlightedPieces = piecesToHighlight;
         return piecesToHighlight;
-    }
+    },
 
     getNumberOfPiecesOnCurrentLevel = function () {
         return initialNumberOfPieces + (2 * currentLevel);
-    };
+    },
 
     getNumberOfPiecesToHighlight = function () {
         var currentNumberOfPieces = getNumberOfPiecesOnCurrentLevel();
-        return (currentNumberOfPieces/2) -1;
+        return (currentNumberOfPieces / 2) - 1;
+    },
+
+    getAllCurrentPieces = function () {
+        return allCurrentPieces;
+    },
+
+    getMorePieces = function () {
+        currentLevel = currentLevel + 1;
+        view.startGame();
+    },
+
+    setHighlightTime = function (newHighlightTime) {
+        highlightTime = newHighlightTime;
+    },
+
+    getHighlightTime = function () {
+        return highlightTime;
     }
+
+    getCurrentLevel = function () {
+        return currentLevel;
+    },
+
+    setCurrentLevel = function (newCurrentLevel) {
+        currentLevel = newCurrentLevel;
+    },
+
+    getHighlightedPieces = function () {
+        return highlightedPieces;
+    },
+
+    guessWasRight = function (lastClickedElementID) {
+        var highlightedPiecesIDs = getPiecesIDs(highlightedPieces);
+        if (highlightedPiecesIDs.includes(lastClickedElementID)) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    getPiecesIDs = function (highlightedPieces) {
+        var piecesIDs = [];
+        for(var i=0; i < highlightedPieces.length; i++) {
+           piecesIDs.push(highlightedPieces[i].id);
+        }
+        return piecesIDs;
+    },
+
+    removePieceFromList = function (elementToRemoveID) {
+        //czy elementToRemove to id
+        var elementToRemove = document.getElementById(elementToRemoveID);
+        highlightedPieces = highlightedPieces.splice(elementToRemove);
+        if (getHighlightedPieces().length === 0) {
+            setCurrentLevel(getCurrentLevel() + 2);
+            controller.highlightPieceInGreen(lastClickedElementID);
+            // view.highlightPieceInGreen(lastClickedElementID);
+            setTimeout(function(){
+                startGame();
+            }, 3000);
+        }
+    };
 
 
     return {
         'generateBoard': generateBoard,
         'getNumberOfPiecesOnCurrentLevel': getNumberOfPiecesOnCurrentLevel,
-        'getPiecesToHighlight' : getPiecesToHighlight
+        'getPiecesToHighlight': getPiecesToHighlight,
+        'getAllCurrentPieces': getAllCurrentPieces,
+        'getMorePieces' : getMorePieces,
+        'setHighlightTime': setHighlightTime,
+        'getHighlightTime': getHighlightTime,
+        'getCurrentLevel' : getCurrentLevel,
+        'setCurrentLevel' : setCurrentLevel,
+        'getHighlightedPieces' : getHighlightedPieces,
+        'guessWasRight' : guessWasRight,
+        'removePieceFromList' : removePieceFromList
     };
 
 }());
 
-
-// const game = (function () {
-//
-//         const initialLevel = 0;
-//         const initialNumberOfPieces = 4;
-//         let divBoard = null;
-//         let currentLevel = 0;
-//         let pieces = [];
-//         let piecesToCheck = [];
-//         let piecesChecked = [];
-//         let currentNumberOfPieces;
-//
-//
-//     var newdiv = document.createElement("DIV");
-//     newdiv.appendChild(document.createTextNode("some text"));
-//     document.body.appendChild(newdiv);
-//
-//         startGame = function (config) {
-//             if (config && config.numberOfPieces) {
-//                 currentNumberOfPieces = config.numberOfPieces;
-//             } else {
-//                 currentNumberOfPieces = initialNumberOfPieces;
-//             }
-//
-//         },
-//
-//         getPieces = function () {
-//             var i,
-//                 pieces = [];
-//
-//             for(i=0; i < currentNumberOfPieces; i++) {
-//                 pieces.push({});
-//             }
-//             pieces[0].toGuess = true;
-//             return pieces;
-//         };
-//
-//         getNumberOfPiecesOnCurrentLevel = function () {
-//             currentNumberOfPieces = initialNumberOfPieces + (2*currentLevel)
-//             return currentPieces;
-//
-//         };
-//
-//         getNumberOfPiecesToHighlight = function () {
-//
-//             var numberOfPiecesToHighlight;
-//                return numberOfPiecesToHighlight = (currentNumberOfPieces/2) -1;
-//
-//         };
-//
-//         getPiecesToHighlight = function () {
-//             l = [];
-//             var number = getNumberPiecesToHighlight();
-//             for(i=0; i<=number; i++) {
-//               los = Math.round(Math.random()*currentNumberOfPieces-1));
-//
-//             }
-//         };
-//
-//
-//
-//     return {
-//         'startGame': startGame,
-//         'getPieces': getPieces
-//     }
-// }());
